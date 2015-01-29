@@ -16,20 +16,23 @@ public class Problem4 {
     }
 
     private static int ThreeDigitScan() {
-        int minnumber = 100; // Smallest 3 digit numbers
-        for (int a = 999; a >= minnumber; a--) {
-            for (int b = 999; b >= minnumber; b--) {
+        int min_number = 100; // Smallest 3 digit numbers
+        int max_palindrome = -1;
+        for (int a = 999; a >= min_number; a--) {
+            for (int b = 999; b >= min_number; b--) {
                 int product = a * b;
                 if (IsPalindrome(product)) {
-                    return product;
+                    if (product > max_palindrome) {
+                        max_palindrome = product;
+                    }
                 }
             }
         }
-        return -1;
+        return max_palindrome;
     }
 
     private static boolean IsPalindrome(int number) {
         String str = String.valueOf(number);
-        return new StringBuilder(str).reverse().toString().equals(str);
+        return new StringBuilder(str).reverse().toString().equals(str); // Is palindrome if reverse string is same
     }
 }
